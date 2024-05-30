@@ -1,0 +1,83 @@
+<% layout('/layouts/boilerplate') -%>
+<script>
+    const mapToken = "<%= process.env.MAP_TOKEN %>";
+    const listing = <%- JSON.stringify(listing) %>;
+</script>
+<div class="row mt-3">
+    <div class="col-8 offset-3">
+        <h3><%= listing.title %></h3>
+    </div>
+    <div class="card col-6 offset-3 show-card listing-card">
+        <img src="<%= listing.image.url %>" alt="listing image" class="card-img-top show-img">
+        <div class="card-body">
+           <h6><b>Farmer's Name :</b> <i><%= listing.farmer_Name %></i></h6> 
+           <p><b>Works Details : </b><%= listing.description%> <br>
+               <i> No. of Hours :</i> <%= listing.no_of_hours %>
+            </p>
+           <p><b>No. of Workers : </b><%= listing.no_of_emp%></p> 
+           <p><b>Salary per Worker : </b>&#8377;<%= listing.price.toLocaleString("en-IN")%></p>
+           <p><b>Country : </b><%= listing.country%> <br></p> 
+           <p><b>Location : </b><%= listing.location %></p>
+           
+        </div>
+    </div>
+    <% if(currUser && currUser._id.equals(listing.owner._id)){ %>
+        <div class="btns mb-3">
+            <a href="/listings/<%=listing._id%>/edit" class="btn btn-dark col-2 offset-3 edit-btn" >Edit</a>
+            
+            <form method="post" action="/listings/<%=listing._id%>?_method=DELETE">
+                <button class="btn btn-dark offset-4">Delete</button>
+            </form>
+        </div>
+    <% } %>
+    
+    <div class="col-8 offset-3">
+        <hr>
+        <% if(currUser) { %>
+            <h4>Get a Work</h4>
+            <form action="/listings/<%= listing._id %>/applicants" method="post" novalidate class="needs-validation">
+                <div class="mb-3 mt-3">
+                    <label for="applicantName" class="form-label">Applicant's Name</label>
+                    <input type="text" id="applicantName" name="applicant[applicantName]" class="form-control" required>
+                    <div class="invalid-feedback">please enter applicant's name</div>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="phoneNo" class="form-label">Phone No </label>
+                    <input type="number" id="phoneNo" name="applicant[phoneNo]" class="form-control" required>
+                    <div class="invalid-feedback">please enter valid phone no.</div>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="address" class="form-label">Applicant's Address</label>
+                    <textarea name="applicant[address]" id="address" cols="30" rows="5" class="form-control" required></textarea>
+                    <div class="invalid-feedback">please enter address</div>
+                </div>
+                <button class="btn btn-outline-dark mb-4">Submit</button>
+            </form>
+        <% } %>
+        
+        <% if(listing.applicants.length > 0){ %>
+            <div class="row mt-3">
+                <h4>All Applicants</h4>
+                <% for(applicant of listing.applicants) { %>
+                    <div class="card col-5 ms-3 mb-3">
+                        <div class="card-body">
+                            <!-- <p class="card-title">User's Name :  applicant.author.username </p> -->
+                            <p class="card-title"><b>Worker's Name :</b> <i><%= applicant.applicantName %></i></p>
+                            <p class="card-text"><b>Phone No :</b> <%= applicant.phoneNo %></p>
+                            <p class="card-text"><b>Address :</b> <%= applicant.address %></p>
+                        </div>
+                        <form method="post" action="/listings/<%= listing._id %>/applicants/<%= applicant._id %>?_method=DELETE" class="mb-3">
+                            <button class="btn btn-dark btn-sm mt-3">Delete</button>
+                        </form>
+                    </div>
+                <% } %>
+            </div>
+        <% } %>
+    </div>
+    <div class="col-6 offset-3 mb-3 row">
+        <h3>Where work will be</h3>
+        <div id="map"></div>
+        <script src="/js/map.js"></script>
+    </div>
+</div>
+

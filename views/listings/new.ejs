@@ -1,0 +1,61 @@
+<% layout("/layouts/boilerplate") %>
+<div class="row mt-3">
+    <div class="col-8 offset-2">
+        <br><br>
+        <h3>Create a New Work's Post</h3>
+        <br>
+        <form action="/listings" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="farmer_Name" class="form-label">Farmer's Name</label>
+                <input name="listing[farmer_Name]" placeholder="enter farmer's name" type="text" class="form-control" required>
+                <div class="invalid-feedback">Please enter farmer's name</div>
+            </div>
+            <div class="mb-3">
+                <label for="title" class="form-label">Types of Work</label>
+                <input name="listing[title]" placeholder="enter type's of work" type="text" class="form-control" required>
+                <div class="invalid-feedback">Please enter what types of works</div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Add description about work</label>
+                <textarea name="listing[description]" class="form-control" required></textarea>
+                <div class="invalid-feedback">Please enter short description</div>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload Work's Image</label>
+                <input name="listing[image]" type="file" class="form-control" >
+            </div>
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="no_of_hours" class="form-label">No of Hours</label>
+                    <input name="listing[no_of_hours]" placeholder="enter no of hours" type="number" class="form-control" required>
+                    <div class="invalid-feedback">Please enter duration of work</div>
+                </div>
+                <div class="mb-3 col-md-4">
+                    <label for="no_of_emp" class="form-label">No of Workers</label>
+                    <input name="listing[no_of_emp]" placeholder="enter no of workers" type="number" class="form-control" required>
+                    <div class="invalid-feedback">Please enter no of workers</div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="price" class="form-label">Salary Per Worker</label>
+                    <input name="listing[price]" placeholder="enter salary per Worker"  class="form-control" required>
+                    <div class="invalid-feedback">Please enter salary of each worker</div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="country" class="form-label">Country</label>
+                <input name="listing[country]" placeholder="enter country" type="text" class="form-control" required>
+                <div class="invalid-feedback">country name should be valid</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input name="listing[location]" placeholder="enter location" type="text" class="form-control" required>
+                <div class="invalid-feedback">location should be valid</div>
+            </div>
+            
+            <br>
+            <button class="btn add-btn btn-dark mb-3">Add New Work</button>
+        </form>
+    </div>
+</div>
