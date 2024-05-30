@@ -26,6 +26,9 @@ module.exports.singup = async(req, res)=>{
 module.exports.renderLoginForm = (req, res)=>{
     res.render("./users/login.ejs");
 }
+module.exports.renderAboutForm = (req, res)=>{
+    res.render("./users/about.ejs");
+}
 
 module.exports.login = async(req, res)=>{
     req.flash("success", "Welcome back to FarmerHub!");

@@ -15,7 +15,7 @@
 
         <div class="navbar-nav ms-auto">
           <a class="nav-link hovereffect" href="/listings"><b>All Works</b></a>
-          <!-- <a class="nav-link hovereffect" href="/about"><b>About</b></a> -->
+          <a class="nav-link hovereffect" href="/about"><b>About</b></a>
           <a class="nav-link hovereffect" href="/listings/new"><b>Add New Work</b></a>
           <% if(!currUser){ %>
             <a class="nav-link hovereffect" href="/signup"><b>Sign Up</b></a>
@@ -23,7 +23,7 @@
           <% } %>
           
           <% if(currUser){ %>
-            <a class="nav-link" href="/logout"><b>Log out</b></a>
+            <a class="nav-link hovereffect" href="/logout"><b>Log out</b></a>
           <% } %>
           
         </div>

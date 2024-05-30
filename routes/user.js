@@ -6,6 +6,8 @@ const passport = require("passport");
 const { saveRedirectUrl } = require("../middleware.js");
 const userController = require("../controllers/users.js");
 
+router.get("/about", userController.renderAboutForm);
+
 router.get("/signup", userController.renderSignupForm);
 
 router.post("/signup", wrapAsync(userController.singup));
