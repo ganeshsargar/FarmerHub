@@ -1,7 +1,7 @@
 <% layout("/layouts/boilerplate") %>
 
 <div class="row mt-3">
-    <h1 class="col-6 offset-3 mb-3">SignUp on FarmerHub</h1>
+    <h3 class="col-6 offset-3 mb-3"><b>SIGN UP</b> </h3>
     <div class="col-6 offset-3">
         <form action="/signup" method="post" class="needs-validation" novalidate>
             <div class="mb-3">
@@ -16,6 +16,9 @@
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input id="password" name="password" placeholder="enter password" type="password" class="form-control" required>
+            </div>
+            <div class="mb-3 " style="display: flex; justify-content: end;">
+                <a href="/login" class="login-hover" style="text-decoration: none;">Sign in with your acccount</a>
             </div>
             <button class="btn btn-success">SignUp</button>
         </form>

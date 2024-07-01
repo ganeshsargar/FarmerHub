@@ -46,7 +46,7 @@ body {
 
 .navbar-brand-style {
    font-size: 30px !important;
-   font-weight: 700 !important;
+   font-weight: 7700 !important;
 }
 
 .btn-search {
@@ -173,4 +173,10 @@ body {
 #map { 
     height: 400px;
     width: 80vh;
+}
+
+/* login */
+
+.login-hover:hover {
+    text-decoration: underline !important;
 }
