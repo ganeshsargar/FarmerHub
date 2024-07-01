@@ -89,3 +89,17 @@ module.exports.destroyListing = async (req, res)=>{
     req.flash("success", "Work Deleted..!");
     res.redirect("/listings");
 }
+
+module.exports.searchListing = async (req, res) => {
+    const searchWork = req.body.search;
+    // console.log(searchWork);
+
+    var allListings = await Listing.find({"title": {$regex: ".*"+searchWork+".*",$options: 'i'}});
+
+    if(allListings.length > 0){
+        res.render("./listings/search.ejs", {allListings});
+    } else {
+        req.flash("error", "Work you requested for does not exist");
+        res.redirect("/listings");
+    }
+}

@@ -29,4 +29,7 @@ router.put("/:id", isLoggedIn, isOwner, upload.single('listing[image]'), validat
 //delete route
 router.delete("/:id", isLoggedIn, isOwner, wrapAsync(listingController.destroyListing));
 
+// search route
+router.post("/search", wrapAsync (listingController.searchListing));
+
 module.exports = router;
