@@ -67,7 +67,9 @@
                             <p class="card-text"><b>Address :</b> <%= applicant.address %></p>
                         </div>
                         <form method="post" action="/listings/<%= listing._id %>/applicants/<%= applicant._id %>?_method=DELETE" class="mb-3">
+                            <% if(currUser && applicant.author._id.equals(currUser._id)) { %>
                             <button class="btn btn-dark btn-sm mt-3">Delete</button>
+                            <% } %>
                         </form>
                     </div>
                 <% } %>
