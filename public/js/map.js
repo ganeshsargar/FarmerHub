@@ -3,9 +3,9 @@
 
     const map = new mapboxgl.Map({
     container: 'map', // container ID
-    style: "mapbox://styles/mapbox/satellite-streets-v12",
+    style: "mapbox://styles/mapbox/streets-v12", //"mapbox://styles/mapbox/satellite-streets-v12",
         center: listing.geometry.coordinates, // starting position [lng, lat]
-        zoom: 12 // starting zoom
+        zoom: 9 // starting zoom
     });
 
 const marker = new mapboxgl.Marker({color: 'red'})

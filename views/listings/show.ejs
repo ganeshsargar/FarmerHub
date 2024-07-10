@@ -18,8 +18,11 @@
            <p><b>Salary per Worker : </b>&#8377;<%= listing.price.toLocaleString("en-IN")%></p>
            <p><b>Country : </b><%= listing.country%> <br></p> 
            <p><b>Location : </b><%= listing.location %></p>
-           
+           <% if(!currUser){ %>
+            <a href="/login"><button class="btn login-btn  btn-search mt-3"><b>Login to Apply</b></button></a>
+           <% } %>
         </div>
+
     </div>
     <% if(currUser && currUser._id.equals(listing.owner._id)){ %>
         <div class="btns mb-3">
@@ -38,12 +41,12 @@
             <form action="/listings/<%= listing._id %>/applicants" method="post" novalidate class="needs-validation">
                 <div class="mb-3 mt-3">
                     <label for="applicantName" class="form-label">Applicant's Name</label>
-                    <input type="text" id="applicantName" name="applicant[applicantName]" class="form-control" required>
+                    <input type="text" onkeypress="return (event.charCode>=65 && event.charCode<=90) || (event.charCode>=97 && event.charCode<=122) || event.charCode==32" id="applicantName" name="applicant[applicantName]" class="form-control" required>
                     <div class="invalid-feedback">please enter applicant's name</div>
                 </div>
                 <div class="mb-3 mt-3">
                     <label for="phoneNo" class="form-label">Phone No </label>
-                    <input type="number" id="phoneNo" name="applicant[phoneNo]" class="form-control" required>
+                    <input type="text" maxlength="10" onkeypress="return event.charCode>=48 && event.charCode <= 57" id="phoneNo" name="applicant[phoneNo]" class="form-control" required>
                     <div class="invalid-feedback">please enter valid phone no.</div>
                 </div>
                 <div class="mb-3 mt-3">
@@ -55,25 +58,23 @@
             </form>
         <% } %>
         
+        <% if(currUser && currUser._id.equals(listing.owner._id)){ %>
         <% if(listing.applicants.length > 0){ %>
             <div class="row mt-3">
-                <h4>All Applicants</h4>
+                <h4 class="mb-4">All Applicants</h4>
                 <% for(applicant of listing.applicants) { %>
                     <div class="card col-8 ms-3 mb-3">
                         <div class="card-body">
                             <!-- <p class="card-title">User's Name :  applicant.author.username </p> -->
-                            <p class="card-title"><b>Worker's Name :</b> <i><%= applicant.applicantName %></i></p>
-                            <p class="card-text"><b>Phone No :</b> <%= applicant.phoneNo %></p>
-                            <p class="card-text"><b>Address :</b> <%= applicant.address %></p>
+                            <p class="card-text mb-1"><b>Worker's Name :</b> <i><%= applicant.applicantName %></i></p>
+                            <p class="card-text mb-1"><b>Phone No :</b> <%= applicant.phoneNo %></p>
+                            <p class="card-text mb-1"><b>Address :</b> <%= applicant.address %></p>
                         </div>
-                        <form method="post" action="/listings/<%= listing._id %>/applicants/<%= applicant._id %>?_method=DELETE" class="mb-3">
-                            <% if(currUser && applicant.author._id.equals(currUser._id)) { %>
-                            <button class="btn btn-dark btn-sm mt-3">Delete</button>
-                            <% } %>
-                        </form>
+                        
                     </div>
                 <% } %>
             </div>
+        <% } %>
         <% } %>
     </div>
     <div class="col-6 offset-3 mb-3 row">

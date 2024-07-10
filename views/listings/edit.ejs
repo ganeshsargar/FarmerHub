@@ -6,12 +6,12 @@
         <form method="post" action="/listings/<%=listing._id%>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="farmer_Name" class="form-label">Farmer's Name</label>
-                <input name="listing[farmer_Name]" value="<%=listing.farmer_Name%>" type="text" class="form-control" required>
+                <input name="listing[farmer_Name]" value="<%=listing.farmer_Name%>" type="text" class="form-control" required onkeypress="return (event.charCode>=65 && event.charCode<=90) || (event.charCode>=97 && event.charCode<=122) || event.charCode==32">
                 <div class="invalid-feedback">Please enter farmer's name</div>
             </div>
             <div class="mb-3">
                 <label for="title" class="form-label">Type of Works</label>
-                <input name="listing[title]" value="<%=listing.title%>" type="text" class="form-control" required>
+                <input name="listing[title]" value="<%=listing.title%>" type="text" class="form-control" required onkeypress="return (event.charCode>=65 && event.charCode<=90) || (event.charCode>=97 && event.charCode<=122) || event.charCode==32">
                 <div class="invalid-feedback">Please enter what type of works</div>
             </div>
             <div class="mb-3">
@@ -48,7 +48,7 @@
            
             <div class="mb-3">
                 <label for="country" class="form-label">Country</label>
-                <input name="listing[country]" value="<%=listing.country%>" type="text" class="form-control" required>
+                <input name="listing[country]" value="<%=listing.country%>" type="text" class="form-control" required onkeypress="return (event.charCode>=65 && event.charCode<=90) || (event.charCode>=97 && event.charCode<=122) || event.charCode==32">
                 <div class="invalid-feedback">country name should be valid</div>
             </div>
 

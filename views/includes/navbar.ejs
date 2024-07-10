@@ -8,7 +8,7 @@
         
         <div class="navbar-nav ms-auto">
           <form class="d-flex" method="post" action="/listings/search">
-            <input class="form-control me-2" placeholder="Search Work" name="search" aria-label="Search">
+            <input class="form-control me-2" placeholder="Search Work" name="search" aria-label="Search" onkeypress="return (event.charCode>=65 && event.charCode<=90) || (event.charCode>=97 && event.charCode<=122) || event.charCode==32">
             <button class="btn btn-search" ><b>Search</b></button>
           </form>
         </div>
